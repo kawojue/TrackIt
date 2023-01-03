@@ -4,15 +4,14 @@ import {createContext, useState, useEffect} from 'react'
 const Context: any = createContext({})
 
 export const DataProvider:React.FC<{children: React.ReactElement}> = ({ children }) => {
+    const [userInfo, setUserInfo] = useState<any>({})
     const [error, setError] = useState<string | null>(null)
     const [coords, setCoords] = useState<ICoords | null>(null)
     const [userIP, setUserIP] = useState<{ip:string}>({ip: ""})
-    const [userInfo, setUserInfo] = useState<any>({})
 
-    const token:string = "d58a0d170c69f8"
-    const url:string = "https://ipinfo.io/json"
-
-    let ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g
+    // const token:string = "d58a0d170c69f8"
+    // const url:string = "https://ipinfo.io/json"
+    // let ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g
 
     const getUserIP = async ():Promise<void> => {
         try {
@@ -26,7 +25,7 @@ export const DataProvider:React.FC<{children: React.ReactElement}> = ({ children
 
     const getUserInfo = async ():Promise<void> => {
         try {
-            const res = await fetch(`${url}?token=${token}`)
+            const res = await fetch(`https://ipapi.co/json/`)
             const data = await res.json()
             setUserInfo(data)
         } catch {
