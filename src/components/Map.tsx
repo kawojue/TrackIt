@@ -14,12 +14,16 @@ const Map:React.FC = () => {
     
     return (
         <>
-            <p>
-                Longitude: {coords.longitude}
-            </p>
-            <p>
-                Latitude: {coords.latitude}
-            </p>
+        {coords ?
+            <section>
+                <p>
+                    Longitude: {coords.longitude}
+                </p>
+                <p>
+                    Latitude: {coords.latitude}
+                </p>
+            </section>
+        : <p>Loading...</p>}
         </>
     )
 }
