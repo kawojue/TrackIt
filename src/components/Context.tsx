@@ -29,12 +29,16 @@ export const DataProvider:React.FC<{children: React.ReactElement}> = ({ children
     const getPosition = (position:any):void => {
         setCoords({
             latitude: position.coords.latitude,
-            longitude: position.coords.longitude
+            longitude: position.coords.longitude,
+            accuracy: position.coords.accuracy
         })
     }
 
     useEffect(() => {
-        getGeolocation()
+        setTimeout(() => {
+            getGeolocation()
+        }, 1500)
+        return () => navigator.geolocation.clearWatch(0)
     })
     
     
