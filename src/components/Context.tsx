@@ -73,7 +73,6 @@ export const DataProvider:React.FC<{children: React.ReactElement}> = ({ children
         setTimeout(() => {
             getGeolocation()
         }, 1500)
-        return () => navigator.geolocation.clearWatch(0)
     })
     
 
