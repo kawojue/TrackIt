@@ -2,7 +2,11 @@
 module.exports = {
   content: ['./src/**/*.tsx'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'cabin': ["Cabin", 'sans-serif']
+      }
+    },
   },
   plugins: [],
 }
