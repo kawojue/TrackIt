@@ -22,6 +22,9 @@ const Map:React.FC = () => {
                 <p>
                     Latitude: {coords.latitude}
                 </p>
+                <p>
+                    Accuracy: {coords.accuracy.toFixed(3)}
+                </p>
             </section>
         : <p>Loading...</p>}
         </>
