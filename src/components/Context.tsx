@@ -23,7 +23,7 @@ export const DataProvider:React.FC<{children: React.ReactElement}> = ({ children
 
     const getUserInfo = async ():Promise<void> => {
         try {
-            const res = await fetch(`http://api.ipstack.com/102.88.35.55?access_key=3fa6a454f519adfa0d7e1ed5fb873e85`)
+            const res = await fetch(`http://api.ipstack.com/${userIP}?access_key=3fa6a454f519adfa0d7e1ed5fb873e85`)
             const data = await res.json()
             setUserInfo(data)
         } catch {
@@ -71,12 +71,14 @@ export const DataProvider:React.FC<{children: React.ReactElement}> = ({ children
     useEffect(() => {
         (async () => await getUserInfo())();
         (async () => await getUserIP())()
+    }, [])
+
+    useEffect(() => {
         setTimeout(() => {
             getGeolocation()
         }, 1500)
         return () => navigator.geolocation.clearWatch(0)
-    }, [])
-    
+    })
     
 
 
