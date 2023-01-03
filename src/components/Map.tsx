@@ -3,7 +3,7 @@ import { useContext } from 'react'
 
 const Map:React.FC = () => {
     const {coords, error, userInfo, userIP}  = useContext<any>(Context)
-    console.log(coords)
+    
     if (error) {
         return (
             <>
@@ -26,7 +26,7 @@ const Map:React.FC = () => {
                     Accuracy: {coords.accuracy.toFixed(3)}
                 </p>
                 <p>
-                    IP: {userIP.ip}
+                    IP: {JSON.stringify(userIP)}
                 </p>
                 <p>
                     User Info: {JSON.stringify(userInfo)}
