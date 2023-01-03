@@ -6,8 +6,11 @@ const Context: any = createContext({})
 export const DataProvider:React.FC<{children: React.ReactElement}> = ({ children }) => {
     const [error, setError] = useState<string | null>(null)
     const [coords, setCoords] = useState<ICoords | null>(null)
-    const [userIP, setUserIP] = useState<{ip: string}>({ip: ""})
+    const [userIP, setUserIP] = useState<{ip:string}>({ip: ""})
     const [userInfo, setUserInfo] = useState<any>({})
+
+    const token:string = "d58a0d170c69f8"
+    const url:string = "https://ipinfo.io/json"
 
     let ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g
 
@@ -23,17 +26,13 @@ export const DataProvider:React.FC<{children: React.ReactElement}> = ({ children
 
     const getUserInfo = async ():Promise<void> => {
         try {
-            const res = await fetch(`http://api.ipstack.com/${userIP}?access_key=3fa6a454f519adfa0d7e1ed5fb873e85`)
+            const res = await fetch(`${url}?token=${token}`)
             const data = await res.json()
             setUserInfo(data)
         } catch {
 
         }
     }
-
-    console.log(userInfo)
-
-    
 
     function showError(error:any):void {
         switch(error.code) {
@@ -66,11 +65,9 @@ export const DataProvider:React.FC<{children: React.ReactElement}> = ({ children
         })
     }
 
-    console.log(userIP)
-
     useEffect(() => {
-        (async () => await getUserInfo())();
-        (async () => await getUserIP())()
+        (async () => await getUserIP())();
+        (async () => await getUserInfo())()
     }, [])
 
     useEffect(() => {
