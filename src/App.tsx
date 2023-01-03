@@ -1,8 +1,8 @@
-import React from 'react'
+import Map from "./components/Map"
 
 const App:React.FC = () => {
   return (
-    <p className="text-2xl text-blue-500">Greetings - Hello, Wolrd</p>
+    <Map />
   )
 }
 
