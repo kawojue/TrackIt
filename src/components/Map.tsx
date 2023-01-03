@@ -29,7 +29,7 @@ const Map:React.FC = () => {
                     IP: {userIP.ip}
                 </p>
                 <p>
-                    Accuracy: {JSON.stringify(userInfo)}
+                    User Info: {JSON.stringify(userInfo)}
                 </p>
             </section>
         : <p>Loading...</p>}
