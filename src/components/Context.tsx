@@ -4,8 +4,8 @@ import {createContext, useState, useEffect} from 'react'
 const Context: any = createContext({})
 
 export const DataProvider:React.FC<{children: React.ReactElement}> = ({ children }) => {
-    const [error, setError] = useState<string| null>(null)
-    const [coords, setCoords] = useState<ICoords>({longitude: 0, latitude: 0})
+    const [error, setError] = useState<string | null>(null)
+    const [coords, setCoords] = useState<ICoords | null>(null)
 
     function showError(error:any):void {
         switch(error.code) {
