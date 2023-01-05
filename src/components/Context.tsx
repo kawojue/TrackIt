@@ -34,19 +34,8 @@ export const DataProvider:React.FC<{children: React.ReactElement}> = ({ children
     }
 
     function showError(error:any):void {
-        switch(error.code) {
-        case error.PERMISSION_DENIED:
-            setError("User denied the request for Geolocation.")
-            break
-        case error.POSITION_UNAVAILABLE:
-            setError("Location information is unavailable.")
-            break
-        case error.TIMEOUT:
-            setError("The request to get user location timed out.")
-            break
-        case error.UNKNOWN_ERROR:
-            setError("An unknown error occurred.")
-            break
+        if (error.code) {
+            setError("User denied permission to access location.")
         }
     }
 
@@ -70,8 +59,8 @@ export const DataProvider:React.FC<{children: React.ReactElement}> = ({ children
     }, [])
 
     useEffect(() => {
+        getGeolocation()
         setTimeout(() => {
-            getGeolocation()
         }, 1500)
     })
     
