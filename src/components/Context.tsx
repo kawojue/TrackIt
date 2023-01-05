@@ -8,21 +8,10 @@ export const DataProvider:React.FC<{children: React.ReactElement}> = ({ children
     const [error, setError] = useState<string | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [coords, setCoords] = useState<ICoords | null>(null)
-    const [userIP, setUserIP] = useState<{ip:string}>({ip: ""})
 
     // const token:string = "d58a0d170c69f8"
     // const url:string = "https://ipinfo.io/json"
     // let ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g
-
-    const getUserIP = async ():Promise<void> => {
-        try {
-            const res = await fetch("https://api.ipify.org?format=json")
-            const ip = await res.json()
-            setUserIP(ip)
-        } catch {
-            setError("IP not found!")
-        }
-    }
 
     const getUserInfo = async ():Promise<void> => {
         try {
@@ -30,7 +19,7 @@ export const DataProvider:React.FC<{children: React.ReactElement}> = ({ children
             const data = await res.json()
             setUserInfo(data)
         } catch {
-
+            setError("User information not found!")
         }
     }
 
@@ -55,13 +44,13 @@ export const DataProvider:React.FC<{children: React.ReactElement}> = ({ children
     }
 
     useEffect(() => {
-        (async () => await getUserIP())();
         (async () => await getUserInfo())()
     }, [])
 
     useEffect(() => {
         getGeolocation()
         setTimeout(() => {
+            setIsLoading(false)
         }, 1500)
     })
     
@@ -69,7 +58,8 @@ export const DataProvider:React.FC<{children: React.ReactElement}> = ({ children
 
     return (
         <Context.Provider value={{
-            coords, error, userInfo, userIP
+            coords, error,
+            userInfo, isLoading
         }}>
             {children}
         </Context.Provider>
