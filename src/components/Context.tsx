@@ -6,6 +6,7 @@ const Context: any = createContext({})
 export const DataProvider:React.FC<{children: React.ReactElement}> = ({ children }) => {
     const [userInfo, setUserInfo] = useState<any>({})
     const [error, setError] = useState<string | null>(null)
+    const [isLoading, setIsLoading] = useState<boolean>(true)
     const [coords, setCoords] = useState<ICoords | null>(null)
     const [userIP, setUserIP] = useState<{ip:string}>({ip: ""})
 
