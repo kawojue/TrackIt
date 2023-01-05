@@ -15,6 +15,7 @@ export const DataProvider:React.FC<{children: React.ReactElement}> = ({ children
 
     const getUserInfo = async ():Promise<void> => {
         try {
+            setIsLoading(true)
             const res = await fetch(`https://ipapi.co/json/`)
             const data = await res.json()
             setUserInfo(data)
