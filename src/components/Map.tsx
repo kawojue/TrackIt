@@ -5,19 +5,11 @@ const Map:React.FC = () => {
     const {coords, error, userInfo, isLoading}  = useContext<any>(Context)
 
     if (isLoading) {
-        return (
-            <>
-                Loading...
-            </>
-        )
+        return <>Loading...</>
     }
 
     if (error) {
-        return (
-            <>
-                <h1>{error}</h1>
-            </>
-        )
+        return <h1>{error}</h1>
     }
     
     return (
